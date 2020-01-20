@@ -6,7 +6,13 @@ Description: WordPress Plugin for european cookie law.
 Author: Tonyio
 */
 // wp_register_script : fonction qui permet de référencer un script
-
+add_action('admin_menu','google_analytics_setup_menu');
+function google_analytics_setup_menu(){
+      add_menu_page('Google analytics', 'Google analytics', 'manage_options', 'config-cookie', 'analytics_page' );
+}
+function analytics_page(){
+    require_once plugin_dir_path (__FILE__) . 'view/option.php';
+}
 function LAMANU_scripts(){
     wp_enqueue_script('tarteaucitron', plugin_dir_url(__FILE__) . 'js/tarteaucitron/tarteaucitron.js', [], '1.3', true);
     wp_enqueue_script('tarteaucitron-init', plugin_dir_url(__FILE__) . 'js/tarteaucitron-init.js', [], '1.0', true);
